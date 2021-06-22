@@ -1,0 +1,46 @@
+			<div class="product-overlay">
+										<a href="{{URL::to('chi-tiet-san-pham/'.$pro->product_id)}}" >	
+											<div class="overlay-content">
+												<h2>{{number_format($pro->product_price).' '.'VNĐ'}}</h2>
+												<p>{{$pro->product_name}}</p>
+												<!-- <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a> -->
+												<?php
+												
+												$customer_id=Session::get('customer_id');
+												if($customer_id==NULL)
+												{
+												?>
+											<form action="{{URL::to('/login-check-out')}}" method="">
+
+												{{csrf_field()}}
+												<span>
+												<input name ="qty"type="hidden" min="1" value="1" />
+												<input name ="productid_hidden"type="hidden" value="{{$pro->product_id}}" />
+												<button type="submit" class="btn btn-fefault cart">
+														<i class="fa fa-shopping-cart"></i>
+														Thêm giỏ hàng
+													</button>
+												</span>
+
+											</form>
+											<?php
+									}else{ ?>
+										<form action="{{URL::to('/save-cart')}}" method="post">
+
+											{{csrf_field()}}
+											<span>
+											<input name ="qty"type="hidden" min="1" value="1" />
+											<input name ="productid_hidden"type="hidden" value="{{$pro->product_id}}" />
+											<button type="submit" class="btn btn-fefault cart">
+													<i class="fa fa-shopping-cart"></i>
+													Thêm giỏ hàng
+												</button>
+											</span>
+
+										</form>
+									<?php
+									}
+									?>
+											</div>
+										</a>
+									</div>
