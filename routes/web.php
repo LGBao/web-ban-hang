@@ -115,7 +115,7 @@ Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart');
 //cart ajax
 Route::post('/add-cart-ajax','CartController@add_cart_ajax');
 Route::get('/show-cart-ajax','CartController@show_cart_ajax');
-
+Route::get('/delete-product-ajax/{session_id}','CartController@delete_product_ajax');
 
 //check out
 Route::get('/login-check-out','CheckoutController@login_checkout');

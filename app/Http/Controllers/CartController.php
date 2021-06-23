@@ -10,6 +10,27 @@ use Illuminate\Support\Facades\Redirect;//trả về
 session_start();
 class CartController extends Controller
 {
+    public function delete_product_ajax($session_id)
+    {
+            $cart=Session::get('cart');
+            if($cart==true)
+            {
+                foreach($cart as $key =>$val)
+                {
+                    if($cart['session_id']==$session_id)
+                    {
+                        unset($cart[$key]); //unset mang vị trí $key
+                    }
+                }
+                Session::put('cart',$cart);
+                return redirect()->back()->with('message','xoá sản phẩm thành công');
+            }
+            else
+            {
+                return redirect()->back()->with('message','xoá sản phẩm thất bại');
+
+            }
+    }
     public function show_cart_ajax(Request $request)
     {
         $cate_product=DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();

@@ -62,11 +62,19 @@
 								<p class="cart_total_price">{{number_format($subtotal,0,',','.')}} vnđ</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete"
+								 href="{{url('/delete-product-ajax/'.$cart['session_id'])}}">
+								 <i class="fa fa-times"></i></a>
 							</td>
 						</tr>
                     @endforeach
+							<tr>
+								<td>
+									<input type="submit" value="Cập nhật" name="update_qty" class="check_out btn btn-default btn-sm">
+								</td>
+							</tr>
 					</tbody>
+					</form>	
 				</table>
 		</div>
 	</div>
